@@ -2,7 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 function Login() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -29,10 +32,13 @@ function Login() {
       );
 
       if (res.data.success) {
-        alert(res.data.message);
+        toast.success(res.data.message);
+        navigate("/");
       }
+      
     } catch (error) {
-      alert(error.res.data.message);
+      console.log(error)
+      // alert(error.res.data.message);
     }
   };
 

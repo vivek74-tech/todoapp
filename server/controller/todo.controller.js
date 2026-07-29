@@ -18,7 +18,8 @@ export const createTodo = async (req, res) => {
     if (todo) {
       return res.status(201).json({
         success: true,
-        message: `todo created ${todo.title}`
+        message: `todo created ${todo.title}`,
+        todo
       })
     }
   } catch (error) {
@@ -31,7 +32,7 @@ export const getAllTodo = async (req, res) => {
 
     const todo = await Todo.find();
 
-    console.log(todo)
+    // console.log(todo)
 
     if (todo) {
       return (res.status(200).json({
@@ -51,7 +52,7 @@ export const updateTodo = async (req, res) => {
     const { title } = req.body
     const todo = await Todo.findOneAndUpdate(todoId, { title }, { new: true });
     // await todo.save();
-    console.log(todo)
+    // console.log(todo)
     if (todo) {
       return (res.status(200).json({
         success: true,
@@ -81,7 +82,7 @@ export const deleteTodo = async (req, res) => {
       todo
 
     }))
-    console.log(todo);
+    // console.log(todo);
   } catch (error) {
     console.log(error);
   }
